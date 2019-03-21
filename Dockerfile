@@ -11,7 +11,9 @@ ADD . /app
 EXPOSE 4141
 
 # require packages
-RUN apt-get update && apt-get install -y git nfs-common
+RUN apt-get update && apt-get install -y git nfs-common wget unzip
+# put terraform
+RUN wget https://releases.hashicorp.com/terraform/0.11.13/terraform_0.11.13_linux_amd64.zip && unzip -d /usr/local/bin/ terraform_0.11.13_linux_amd64.zip
 
 # ca certs
 RUN mkdir -p /etc/ssl/certs
