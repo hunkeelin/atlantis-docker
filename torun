@@ -1,0 +1,23 @@
+#!/bin/bash
+echo "starting"
+#mount $MOUNTPOINT:$MOUNTDIR /data
+mkdir -p /data
+if [ "$ALLOW_REPO_CONFIG" = true ] ; then
+	atlantis server \
+	--port="$PORT" \
+	--gh-user="$USERNAME" \
+	--gh-token="$TOKEN" \
+	--gh-webhook-secret="$SECRET" \
+	--repo-whitelist="$REPO_WHITELIST" \
+	--data-dir="/data" \
+	--allow-repo-config
+else 
+	atlantis server \
+	--port="$PORT" \
+	--gh-user="$USERNAME" \
+	--gh-token="$TOKEN" \
+	--gh-webhook-secret="$SECRET" \
+	--repo-whitelist="$REPO_WHITELIST" \
+	--data-dir="/data" 
+fi
+echo "dead"
